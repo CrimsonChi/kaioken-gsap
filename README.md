@@ -2,14 +2,6 @@
 
 Development monorepo template for **kaioken-gsap**.
 
-Get started by running
-
-```bash
-node setup -p packagename -g mygithubusername -e me@hotmail.com
-# OR
-node setup --package packagename --github mygithubusername --email me@hotmail.com
-```
-
 ## Structure
 
 - `.github`

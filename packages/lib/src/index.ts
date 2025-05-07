@@ -5,7 +5,7 @@
  * Based on the work of Jack Doyle, jack@greensock.com - (https://github.com/greensock/react/blob/main/src/index.js)
  */
 
-import { useLayoutEffect, useRef } from "kaioken"
+import { useCallback, useLayoutEffect, useRef, useState } from "kaioken"
 import gsap from "gsap"
 
 type ContextSafeFunc = <T extends Function>(func: T) => T
@@ -81,3 +81,41 @@ export function useGSAP(
 // @ts-expect-error shut up ts
 useGSAP.register = (core) => (_gsap = core)
 useGSAP.headless = true // doesn't require the window to be registered.
+
+// the following is based on @gibsonmurray's 'useFlip' hook: https://github.com/gibsonmurray/react/tree/useFlip
+export type UseFlipOptions = Flip.FlipStateVars &
+  Flip.FromToVars & { revertOnUpdate?: boolean }
+
+export function useFlip(target: gsap.DOMTarget, options: UseFlipOptions) {
+  const [isFlipped, setIsFlipped] = useState(false)
+  const flipStateRef = useRef<Flip.FlipState | null>(null)
+  const scopeRef = useRef<Element | null>(null)
+
+  const { props, simple, revertOnUpdate, ...vars } = options
+
+  const captureState = useCallback(() => {
+    const mergedVars = { props, simple, targets: target }
+    flipStateRef.current = Flip.getState(target, mergedVars)
+  }, [target, props, simple])
+
+  const flip = useCallback(() => {
+    captureState()
+    setIsFlipped((prev) => !prev)
+  }, [captureState])
+
+  useGSAP(
+    () => {
+      if (flipStateRef.current) {
+        Flip.from(flipStateRef.current, vars)
+        flipStateRef.current = null
+      }
+    },
+    {
+      scope: scopeRef,
+      dependencies: [isFlipped],
+      revertOnUpdate: revertOnUpdate,
+    }
+  )
+
+  return { isFlipped, flip, scopeRef }
+}
