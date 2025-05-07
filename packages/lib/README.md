@@ -1,4 +1,4 @@
-# **%PACKAGE-NAME%**
+# **kaioken-gsap**
 
 #### _An awesome new package._
 

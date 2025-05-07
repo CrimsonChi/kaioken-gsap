@@ -1,6 +1,6 @@
-# %PACKAGE-NAME%
+# kaioken-gsap
 
-Development monorepo template for **%PACKAGE-NAME%**.
+Development monorepo template for **kaioken-gsap**.
 
 Get started by running
 
@@ -16,7 +16,7 @@ node setup --package packagename --github mygithubusername --email me@hotmail.co
   - Contains workflows used by GitHub Actions.
 - `packages`
   - Contains the individual packages managed in the monorepo.
-  - [%PACKAGE-NAME%](https://github.com/%GITHUB-USERNAME%/%PACKAGE-NAME%/blob/main/packages/lib)
+  - [kaioken-gsap](https://github.com/CrimsonChi/kaioken-gsap/blob/main/packages/lib)
 - `sandbox`
   - Contains example applications and random tidbits.
 

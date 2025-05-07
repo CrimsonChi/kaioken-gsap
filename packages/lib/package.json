@@ -1,19 +1,38 @@
 {
-  "name": "%PACKAGE-NAME%",
+  "name": "kaioken-gsap",
   "version": "1.0.0",
-  "description": "An awesome new package",
+  "description": "Tools for using GSAP in Kaioken, like useGSAP() which is a drop-in replacement for useLayoutEffect()/useEffect()",
   "main": "dist/index.js",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/%GITHUB-USERNAME%/%PACKAGE-NAME%"
+    "url": "https://github.com/CrimsonChi/kaioken-gsap"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\"",
     "build": "rm -rf dist && tsc",
     "dev": "tsc --watch"
   },
-  "keywords": [],
-  "author": "%GITHUB-USERNAME%",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "peerDependencies": {
+    "kaioken": ">=0.38.0",
+    "gsap": "^3.12.5"
+  },
+  "keywords": [
+    "kaioken",
+    "gsap",
+    "useeffect",
+    "uselayouteffect",
+    "usegsap",
+    "animation",
+    "greensock",
+    "javascript"
+  ],
+  "author": "CrimsonChi",
   "license": "ISC"
 }
